@@ -120,4 +120,35 @@ char kunciJawaban[] = {
     printf("Kamu telah menyelesaikan kuis! Skormu adalah: %d\n", skor);
 }
 
+int main(int argc, char *argv[])
+{
+    printHeader();
 
+    if (argc == 4 && strcmp(argv[1], "daftar") == 0)
+    {
+        daftar(argv[2], argv[3]);
+    }
+    else if (argc == 4 && strcmp(argv[1], "login") == 0)
+    {
+        User user = loginUser(argv[2], argv[3]);
+        if (strcmp(user.nama_user, "") == 0)
+        {
+            printf("Username atau kata sandi salah!\n");
+            printf("Cara menggunakan: login <nama_user> <kata_sandi>\n", argv[0]);
+            return 1;
+        }
+
+        printf("Selamat datang, %s! Mari mulai kuis, dan jawab dengan benar yaa!!!\n\n", user.nama_user);
+        startKuis();
+    }
+    else
+    {
+        printf("Argumen tidak valid!\n");
+        printf("Cara menggunakan:\n");
+        printf("  Mendaftarkan user baru: %s daftar <nama_user> <kata_sandi>\n", argv[0]);
+        printf("  Masuk dan mulai kuis: %s login <nama_user> <kata_sandi>\n", argv[0]);
+        return 1;
+    }
+
+    return 0;
+}
