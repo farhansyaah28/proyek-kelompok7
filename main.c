@@ -89,3 +89,35 @@ User loginUser(char *nama_user, char *kata_sandi)
     return userKosong;
 }
 
+char kunciJawaban[] = {
+        'a', 'c', 'b', 'b', 'c',
+        'd', 'a', 'b', 'c', 'a'};
+    char jawaban;
+    int skor = 0;
+    int jumlahPertanyaan = sizeof(pertanyaan) / sizeof(pertanyaan[0]);
+
+    for (int i = 0; i < jumlahPertanyaan; i++)
+    {
+
+        printf("Pertanyaan %d: %s\n", i + 1, pertanyaan[i]);
+        for (int j = 0; j < 4; j++)
+        {
+            printf("%c) %s\n", 'a' + j, pilihan[i][j]);
+        }
+        printf("Jawaban (a/b/c/d): ");
+        scanf(" %c", &jawaban);
+        if (jawaban == kunciJawaban[i])
+        {
+            skor += 10;
+            printf("Jawaban benar! Kamu mendapat 10 poin.\n\n");
+        }
+        else
+        {
+            printf("Jawaban salah! Kamu tidak mendapat poin.\n\n");
+        }
+    }
+
+    printf("Kamu telah menyelesaikan kuis! Skormu adalah: %d\n", skor);
+}
+
+
